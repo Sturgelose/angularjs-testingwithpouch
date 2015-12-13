@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'angular-filesort'],
+    frameworks: ['es5-shim', 'jasmine', 'angular-filesort'],
 
     // sort app/**/*.js files
     angularFilesort: {
@@ -26,6 +26,8 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: bowerFiles.concat([
+      // shims for PouchDB testing
+      'node_modules/tlvince-blob-shim/Blob.js',
       // other
       'app/!(bower_components)/**/*.js',
       // test
