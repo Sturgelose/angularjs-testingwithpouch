@@ -1,0 +1,19 @@
+{
+  "ecmaVersion": 6,
+  "libs": [],
+  "loadEagerly": [
+    "app/*/**.js"
+  ],
+  "dontLoad": [
+    "app/bower_components/*/**.js"
+  ],
+  "plugins": {
+    "complete_strings": {},
+    "node": {},
+    "angular": {},
+    "es_modules": {},
+    "doc_comment": {
+      "fullDocs": true
+    }
+  }
+}
