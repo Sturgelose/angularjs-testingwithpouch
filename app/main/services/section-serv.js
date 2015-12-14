@@ -11,16 +11,11 @@ angular.module('main')
      * @returns {Promise}  Returns information of the section or sections
       */
     this.getSection = function (sectionId, forceUpdate) {
-      if (!angular.isUndefined(forceUpdate)) {
-        if (typeof(forceUpdate) !== 'boolean') {
-          throw new TypeError('Invalid type for forceUpdate in .getSection call');
-        }
-        if (forceUpdate) {
-          // Update and return the updated section
-          return updateSections(sectionId);
-        }
+      if (forceUpdate === true) {
+        // Update and return the updated section
+        return updateSections(sectionId);
       }
-      else {
+      else if (angular.isUndefined(forceUpdate) || forceUpdate === false) {
         var updated = false;
         // Find the section
         return findSection(sectionId)
@@ -31,11 +26,16 @@ angular.module('main')
           })
           // If the section found is too old, try to update it (only if we didn't just update)
           .then(function (foundSection) {
-            if (!updated && Date.now() - foundSection.timestamp > DELTA_UPDATE_TIME) {
+            if (!updated && Date.now() - foundSection.docs[0].timestamp > DELTA_UPDATE_TIME) {
               return updateSections(sectionId);
+            }
+            else {
+              return Promise.resolve(foundSection.docs);
             }
           });
       }
+
+      throw new TypeError('Invalid type for forceUpdate in .getSection call');
     };
 
     /**
