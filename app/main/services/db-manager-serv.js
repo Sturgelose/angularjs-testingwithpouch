@@ -37,7 +37,7 @@ angular.module('main')
 
     function addTimestamp (document) {
       document.timestamp = Date.now();
-      return document;
+      return Promise.resolve(document);
     }
 
 
@@ -46,7 +46,7 @@ angular.module('main')
       return Promise.resolve(addTimestamp(document))
         // Put in the DB
         .then(function (document) {
-          return db.put(id, document);
+          return db.put(document, id);
         });
     };
 

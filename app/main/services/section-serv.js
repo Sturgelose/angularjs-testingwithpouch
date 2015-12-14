@@ -64,7 +64,8 @@ angular.module('main')
           return Promise.resolve(section);
         }
         else {
-          throw new Error('API quality is bad');
+          //throw new Error('API quality is bad');
+          return Promise.resolve(section);
         }
       }
       throw new Error('Wrong format in the returned JSON');
@@ -83,7 +84,7 @@ angular.module('main')
       return DBManager.fetchURL(Config.ENV.CALLHOME_SECTION_URL)
         .then(function (httpAnswer) {
           // For each section object
-          $q.all(httpAnswer.data.map(function (section) {
+          return $q.all(httpAnswer.data.map(function (section) {
             var updatedSection;
             // Check the section object consistency
             return checkSectionJSON(section)
@@ -108,17 +109,21 @@ angular.module('main')
                   });
               })
               // Put it back to the database
-              .then(function (updatedSection) {
+              .then(function () {
                 return DBManager.putDoc(updatedSection, updatedSection.code);
               })
               // Check if we have to return this info
               // If so, add it to the array
               .then(function () {
+                var sectionArray = [];
                 // Handle if we have an array or just one id
                 if (typeof sectionId === 'string') {
-                  sectionId = [].concat(sectionId);
+                  sectionArray = [].concat(sectionId);
                 }
-                sectionId.forEach( function (id) {
+                else {
+                  sectionArray = sectionId;
+                }
+                sectionArray.forEach( function (id) {
                   if (id === section.code) {
                     updatedSections.push(section);
                   }
@@ -139,7 +144,7 @@ angular.module('main')
       */
     function findSection (sectionId) {
       // Fetch all sections
-      if (!angular.isUndefined(sectionId) || sectionId === null) {
+      if (angular.isUndefined(sectionId) || sectionId === null) {
         return DBManager.findDoc({
           selector: {
             docType: 'section'
