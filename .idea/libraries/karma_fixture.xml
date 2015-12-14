@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="karma-fixture" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="node_modules" />
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/node_modules/karma-fixture/lib/fixture.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/karma-fixture/lib/index.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/karma-fixture/lib/adapter.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/node_modules/karma-fixture/lib/fixture.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/karma-fixture/lib/index.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/karma-fixture/lib/adapter.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

@@ -8,9 +8,13 @@ describe('module: main, service: Section', function () {
   beforeEach(module('ngHtml2Js'));
 
   // instantiate service
+  var sectionJson;
   var Section;
   beforeEach(inject(function (_Section_) {
     Section = _Section_;
+    // Load fixtures
+    fixture.setBase('test/karma/fixtures')
+    sectionJson = fixture.load('json/section-list.json');
   }));
 
   it('should do something', function () {

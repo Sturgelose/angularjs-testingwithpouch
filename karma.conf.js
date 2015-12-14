@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['es5-shim', 'jasmine', 'angular-filesort'],
+    frameworks: ['es5-shim', 'jasmine', 'angular-filesort', 'fixture'],
 
     // sort app/**/*.js files
     angularFilesort: {
@@ -32,6 +32,9 @@ module.exports = function (config) {
       'app/!(bower_components)/**/*.js',
       // test
       'test/karma/**/*.js',
+      {
+        pattern: 'test/karma/fixtures/**/*'
+      },
       // templates
       'app/**/templates/*.html'
     ]),
@@ -41,8 +44,16 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // also preprocess fixtures
     preprocessors: {
-      'app/**/templates/*.html': ['ng-html2js']
+      'app/**/templates/*.html': ['ng-html2js'],
+      'test/karma/fixtures/**/*.html': ['ng-html2js'],
+      'test/karma/fixtures/**/*.json': ['json_fixtures']
+    },
+
+    // variable where to find the fixtures
+    jsonFixturesPreprocessor: {
+      variableName: '__json__'
     },
 
     // use template cache to avoid unexpected $http requests from ui-router

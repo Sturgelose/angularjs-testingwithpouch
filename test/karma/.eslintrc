@@ -5,7 +5,8 @@
   },
   "globals": {
     "inject": true,
-    "module": true
+    "module": true,
+    "fixture": true
   },
   "rules": {
   }

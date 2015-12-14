@@ -1,0 +1,34 @@
+[
+  {
+    "code": "sectionA",
+    "name": "ESN Uni A",
+    "api_url": "http://sectionA.esn.org/?q=api/v1",
+    "api_version": "1",
+    "api_quality": 1,
+    "website": "http://sectionA.esn.org/"
+  },
+  {
+    "code": "sectionB",
+    "name": "ESN Uni B",
+    "api_url": "http://sectionB.esn.org/?q=api/v1",
+    "api_version": "1",
+    "api_quality": 1,
+    "website": "http://sectionB.esn.org/"
+  },
+  {
+    "code": "sectionC",
+    "name": "ESN Uni C",
+    "api_url": "http://sectionC.esn.org/?q=api/v1",
+    "api_version": "1",
+    "api_quality": 1,
+    "website": "http://sectionC.esn.org/"
+  },
+  {
+    "code": "sectionD",
+    "name": "ESN Uni D",
+    "api_url": "http://sectionD.esn.org/?q=api/v1",
+    "api_version": "1",
+    "api_quality": 1,
+    "website": "http://sectionD.esn.org/"
+  }
+]
