@@ -1,27 +1,33 @@
 'use strict';
 angular.module('main')
-  .service('DBManager', function ($log, pouchDB, $http) {
+  .service('DBManager', function ($log, pouchDB, $http, $q) {
 
     // Enable auto compaction to keep it always small
     var db = pouchDB('ESNappDB', {auto_compaction: true}); // eslint-disable-line camelcase
 
-    // Index for a content type for a list of sections
-    db.createIndex({
-      index: {
-        fields: ['docType', 'contentType'],
-        name: 'contentList',
-        ddoc: 'contentList'
-      }
-    });
+    this.createIndexes = function () {
+      // Index for a content type for a list of sections
+      var index1 = db.createIndex({
+        index: {
+          fields: ['docType', 'contentType'],
+          name: 'contentList',
+          ddoc: 'contentList'
+        }
+      });
 
-    // Index for section info
-    db.createIndex({
-      index: {
-        fields: ['code', 'docType'],
-        name: 'docList',
-        ddoc: 'docList'
-      }
-    });
+      // Index for section info
+      var index2 = db.createIndex({
+        index: {
+          fields: ['code', 'docType'],
+          name: 'docList',
+          ddoc: 'docList'
+        }
+      });
+
+      return $q.all([index1, index2]);
+    };
+
+    this.createIndexes();
 
     this.docType = {
       SECTION: 'section',
@@ -34,6 +40,7 @@ angular.module('main')
       NEWS: 'news',
       PARTNER: 'partner'
     };
+
 
     function addTimestamp (document) {
       document.timestamp = Date.now();

@@ -7,7 +7,7 @@ angular.module('main')
     /**
      * Returns a section or sections info
      * @param sectionId     {string|string[]}   Id string or array of strings with the Ids
-     * @param forceUpdate   {boolean}  true if needs to force the update
+     * @param forceUpdate   [forceUpdate=false]{boolean}  true if needs to force the update
      * @returns {Promise}  Returns information of the section or sections
       */
     this.getSection = function (sectionId, forceUpdate) {
@@ -26,7 +26,7 @@ angular.module('main')
           })
           // If the section found is too old, try to update it (only if we didn't just update)
           .then(function (foundSection) {
-            if (!updated && Date.now() - foundSection.docs[0].timestamp > DELTA_UPDATE_TIME) {
+            if (foundSection.docs.length === 0 || !updated && Date.now() - foundSection.docs[0].timestamp > DELTA_UPDATE_TIME) {
               return updateSections(sectionId);
             }
             else {
