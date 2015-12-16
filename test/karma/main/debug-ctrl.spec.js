@@ -18,19 +18,19 @@ describe('module: main, controller: DebugCtrl', function () {
     it('should classify asd as weak', function () {
       DebugCtrl.password.input = 'asd';
       DebugCtrl.grade();
-      expect(DebugCtrl.password.strength).toEqual('weak');
+      expect(DebugCtrl.password.strength).to.equal('weak');
     });
 
     it('should classify asdf as medium', function () {
       DebugCtrl.password.input = 'asdf';
       DebugCtrl.grade();
-      expect(DebugCtrl.password.strength).toEqual('medium');
+      expect(DebugCtrl.password.strength).to.equal('medium');
     });
 
     it('should classify asdfasdfasdf as strong', function () {
       DebugCtrl.password.input = 'asdfasdfasdf';
       DebugCtrl.grade();
-      expect(DebugCtrl.password.strength).toEqual('strong');
+      expect(DebugCtrl.password.strength).to.equal('strong');
     });
   });
 

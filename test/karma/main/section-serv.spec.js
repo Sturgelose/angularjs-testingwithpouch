@@ -7,10 +7,6 @@ describe('module: main, service: Section', function () {
   // load all the templates to prevent unexpected $http requests from ui-router
   beforeEach(module('ngHtml2Js'));
 
-  beforeEach(module(function ($provide) {
-    $provide.value('pouchDB', jasmine.createSpyObj('pouchDB', ['post']));
-  }));
-
   var pouchDB;
   var sectionJson;
   var $httpBackend;
@@ -19,14 +15,12 @@ describe('module: main, service: Section', function () {
   var Config;
   var $q;
   beforeEach(inject(function ($injector) {
-    pouchDB = $injector.get('pouchDB');
-    pouchDB.post.and.returnValue($q.when('somedata'));
     $httpBackend = $injector.get('$httpBackend');
     $rootScope = $injector.get('$rootScope');
     Section = $injector.get('Section');
     Config = $injector.get('Config');
     $q = $injector.get('$q');
-
+    pouchDB = $injector.get('DBManager');
     // Load fixtures
     fixture.setBase('test/karma/fixtures');
     sectionJson = fixture.load('json/section-list.json');
@@ -38,19 +32,25 @@ describe('module: main, service: Section', function () {
   describe('.getSection', function () {
 
     it('should fetch all sections', function (done) {
-
-      pouchDB.post.and.returnValue($q.when('123'));
       var sectionA = sectionJson[0];
 
       Section.getSection('SectionA')
         .then(function (answerSection) {
-          // Check the expects here....
+          expect(answerSection).not.to.be.null;
 
           // End the test
           done();
         });
 
-      $httpBackend.flush();
+      $rootScope.$digest();
+      $rootScope.$digest();
+      $rootScope.$digest();
+      $rootScope.$digest();
+      $rootScope.$digest();
+      $rootScope.$digest();
+
+
+      //$httpBackend.flush();
     });
 
   });

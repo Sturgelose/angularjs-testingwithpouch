@@ -14,7 +14,7 @@ describe('module: main, service: DBManager', function () {
   }));
 
   it('should do something', function () {
-    expect(!!DBManager).toBe(true);
+    expect(!!DBManager).to.be.true;
   });
 
 });

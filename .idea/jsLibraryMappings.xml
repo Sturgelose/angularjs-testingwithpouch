@@ -3,7 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{esnappv2 node_modules}" />
     <file url="file://$PROJECT_DIR$/karma.conf.js" libraries="{karma-DefinitelyTyped}" />
-    <file url="file://$PROJECT_DIR$/test" libraries="{jasmine-DefinitelyTyped, karma-jasmine-DefinitelyTyped}" />
-    <file url="PROJECT" libraries="{jasmine-DefinitelyTyped, karma-DefinitelyTyped, karma-jasmine-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{karma-DefinitelyTyped}" />
   </component>
 </project>

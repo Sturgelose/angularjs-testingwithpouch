@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['es5-shim', 'jasmine', 'angular-filesort', 'fixture'],
+    frameworks: ['es5-shim', 'mocha', 'chai', 'angular-filesort', 'fixture'],
 
     // sort app/**/*.js files
     angularFilesort: {

@@ -20,9 +20,9 @@ describe('module: main, service: Main', function () {
       Main.changeBriefly();
     });
     it('should briefly change', function () {
-      expect(Main.someData.binding).toEqual('Yeah this was changed');
+      expect(Main.someData.binding).to.equal('Yeah this was changed');
       $timeout.flush();
-      expect(Main.someData.binding).toEqual('Yes! Got that databinding working');
+      expect(Main.someData.binding).to.equal('Yes! Got that databinding working');
     });
   });
 

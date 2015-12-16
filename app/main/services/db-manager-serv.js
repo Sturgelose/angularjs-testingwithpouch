@@ -3,11 +3,11 @@ angular.module('main')
   .service('DBManager', function ($log, pouchDB, $http, $q) {
 
     // Enable auto compaction to keep it always small
-    var db = pouchDB('ESNappDB', {auto_compaction: true}); // eslint-disable-line camelcase
+    this.db = pouchDB('ESNappDB', {auto_compaction: true}); // eslint-disable-line camelcase
 
     this.createIndexes = function () {
       // Index for a content type for a list of sections
-      var index1 = db.createIndex({
+      var index1 = this.db.createIndex({
         index: {
           fields: ['docType', 'contentType'],
           name: 'contentList',
@@ -16,7 +16,7 @@ angular.module('main')
       });
 
       // Index for section info
-      var index2 = db.createIndex({
+      var index2 = this.db.createIndex({
         index: {
           fields: ['code', 'docType'],
           name: 'docList',
@@ -53,12 +53,12 @@ angular.module('main')
       return Promise.resolve(addTimestamp(document))
         // Put in the DB
         .then(function (document) {
-          return db.put(document, id);
+          return this.db.put(document, id);
         });
     };
 
     this.findDoc = function (query) {
-      return db.find(query);
+      return this.db.find(query);
     };
 
     this.fetchURL = function (url) {
